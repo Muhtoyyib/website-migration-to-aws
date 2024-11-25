@@ -1,110 +1,82 @@
-# Migrating AtrMotors.com to AWS S3
+# Migrating blrighthomes.com to AWS
+
+This document outlines the migration process for blrighthomes.com from its current hosting provider, Hostinger, to Amazon Web Services (AWS). The objective is to leverage AWS's robust infrastructure for improved scalability, security, and website performance.
 
 ## Project Overview
+   
+blrighthomes.com is a static portfolio/landing website. Currently hosted on Hostinger, this project aims to migrate the website and its domain name to AWS for a more secure and cost-effective solution.
 
-This project aims to migrate a client's website -  static portfolio/landing website - from Hostinger to Amazon Web Services (AWS). The project aims to create a more secure and cost-effective solution by leveraging AWS's robust and scalable infrastructure. The website, being static, does not require a traditional server. Therefore, the project will utilize Amazon S3 for static website hosting, Amazon Route 53 for domain name management, GitHub Actions for continuous integration and continuous delivery (CI/CD), and AWS CloudWatch to monitor website performance. This approach will ensure a reliable and efficient deployment process.
+Here's a breakdown of the existing and new setup:
 
-## Objectives
+**Existing (Hostinger)**: Shared hosting environment (likely) with limited scalability and security features.
+**New (AWS)**: Serverless architecture utilizing S3 for static website hosting, CloudFront for content delivery, Route 53 for domain management, and CloudWatch for monitoring. This approach offers greater scalability, enhanced security, and improved performance.
 
-- Successfully migrate client's website to AWS.
-- Successfully migrate client's domain name to AWS.
-- Implement CI/CD  for automated website deployments.
-- Ensure website performance and scalability.
+## Target Architecture
+   
+Before Migration:
 
+Hostinger: (Insert a simple diagram representing shared hosting, database storage if applicable)
 
-## Scope
+After Migration:
 
-- Migrating website files to AWS S3 for static website hosting.
-- Configuring Route 53 for domain name management.
-- Setting up a GitHub Actions workflow for automated deployment.
-- (Optional) Implementing CloudFront for improved performance and global distribution.
+AWS: (Insert a diagram showcasing S3 bucket, CloudFront distribution, Route 53 integration, and any other relevant AWS services)
 
-## Technical Approach
+## AWS Services Utilized
 
-### Phase 1: Website Preparation and AWS Setup
+- **Amazon S3**: Secure, scalable object storage for hosting static website content (HTML, CSS, JavaScript, images).
+- **AWS CloudFront**: Content Delivery Network (CDN) service to improve website loading times for global users by caching content at edge locations.
+- **AWS Route 53**: Managed Domain Name System (DNS) service for managing AtrMotors.com domain name and routing traffic to the website hosted on S3 via CloudFront.
+- **AWS CloudWatch**: Monitoring and logging service to track website health, performance metrics, and identify potential issues.
+- **AWS Identity and Access Management (IAM): Service for creating users and roles with specific permissions to access AWS resources securely.
+  
+## Migration Phases
 
-- **Website Backup**: Download all website files and code from where it is currently hosted. In this case, Hostinger.
-- **Version Control**: Create a new GitHub repository to store your website code.
-- **AWS Account Setup**: Verify there's an active AWS Account to be used
-- **Create an S3 Bucket**: Create an S3 bucket and configure it for static website hosting.
+The migration process will be divided into distinct phases:
 
-### Phase 2: CI/CD Integration with GitHub to automatically deploy website to S3.
+**Phase 1**: Planning and Prerequisites
 
-- Push website code to repository
-- Configure AWS Credentials:
-    - Create an AWS IAM user with programmatic access to S3.
-    - Generate access keys for this user.
-    - Store these keys securely in GitHub Secrets.
-- Create a GitHub Actions Workflow: The worfflow build the website and deploy it to S3 when there's a push to the main branch. 
-- Push new Changes to GitHub
+Verify domain ownership and initiate transfer process to AWS Route 53.
+Create IAM roles and users with appropriate access for migration tasks.
+Set up initial infrastructure in the AWS account (e.g., S3 bucket).
 
-### Phase 3: Domain Transfer and DNS Configuration
+Phase 2: S3 Bucket Setup and File Migration
 
-- Unlock Domain: Unlock your domain in your Hostinger account.
-- Obtain Authorization Code: Get the authorization code from Hostinger.
-- Transfer Domain to AWS Route 53: Initiate the domain transfer in the AWS Route 53 console using the authorization code.
-- Configure DNS in Route 53:
-  - Create a hosted zone for your domain.
-  - Create an A record pointing to the S3 bucket's endpoint.
- 
-### Phase 4: CloudFront Implementation ( Optional )
+Configure an S3 bucket for static website hosting.
+Migrate website files (HTML, CSS, JavaScript, images) from Hostinger to the S3 bucket.
+Set appropriate access permissions for the S3 bucket.
+Phase 3: CloudFront Distribution Configuration
 
-- Create a CloudFront Distribution that points to the S3 hosting the website
-- update the alias record in Route 53 to point to the new CloudFront distribution
- 
-### Phase 5: Test and Monitor
+Create a CloudFront distribution pointing to the S3 bucket hosting the website.
+Configure caching behavior, security settings (HTTPS), and Origin Access Identity (OAI) for secure communication between CloudFront and S3.
+Phase 4: Route 53 DNS Setup and Testing
 
-- Test Website: Thoroughly test your website to ensure it's working correctly.
-- Monitor Performance using CloudWatch: 
-    - Enable CloudWatch Logs for Your S3 Bucket
-    - Create a CloudWatch Alarm
-    - Use CloudWatch Insights to Analyze Logs
-- Implement Security: Ensure your S3 bucket and website are secure.
+Configure a hosted zone in Route 53 for AtrMotors.com domain.
+Create an alias record in Route 53 pointing the domain to the CloudFront distribution.
+Perform thorough testing to ensure website accessibility through the new domain.
+Phase 5: Monitoring, Optimization, and Final Switchover
 
+Monitor website performance using CloudWatch after switching traffic to the new AWS setup.
+Optimize CloudFront caching and other configurations for improved user experience.
+Once testing is complete, finalize the migration by switching traffic from Hostinger to AWS.
+5. Possible Challenges and Solutions
+Challenge: DNS propagation delays can cause temporary disruptions during domain transfer.
 
+Solution: Schedule the migration for a low-traffic window and adjust DNS Time-To-Live (TTL) values for faster propagation.
 
-## Architectural Diagram 
+Challenge: Incorrect S3 or CloudFront configuration can lead to website access issues.
 
-![Cloud Architecture Lucidchart](https://github.com/user-attachments/assets/fb40e356-da3d-4b2d-b7cc-ffb3e6bf814e)
+Solution: Extensive testing using AWS CloudFront test URLs before switching traffic. Utilize the AWS documentation and support resources for troubleshooting.
 
+Challenge: Downtime during migration is a potential risk.
 
+Solution: Perform a staged migration process with testing in a development environment before switching traffic to the production environment on AWS.
 
-## Project schedule
-
-| Task | Estimated Duration      | 
-|:--------:| -------------:|
-| Phase 1 & Phase 2 | 1 day |
-| Phase 3 | 1 day |
-| Phase 4 & 5 | 1 -2 days |
-
-
-
-## Potential Challenges
-
-
-- Domain Transfer: Transferring the domain to AWS Route 53 might require additional steps and time.
-- DNS Propagation: DNS changes may take some time to propagate globally.
-- S3 Bucket Configuration: Incorrect S3 bucket configuration can lead to website access issues.
-
-
-## Success Criteria
-
-- Successful migration of the AtrMotors.com website to AWS S3.
-- Domain name resolution pointing to the S3 bucket.
-- Automated deployment pipeline using GitHub Actions.
-- Improved website performance and security.
-
-## Risks and Mitigation Strategies
-
-- Downtime during migration: Schedule the migration during off-peak hours and minimize downtime.
-- Unexpected technical issues: Have a rollback plan in place to revert to the original hosting if necessary.
-- Security vulnerabilities: Conduct thorough security testing before deploying the website on AWS.
-
-**Please note**: This is a high-level project plan, and adjustments might be necessary based on the specific details of AtrMotors.com and its hosting setup.
-
-
-This document outlines the migration process, configurations, and CI/CD pipeline setup for AtrMotors.com. Detailed documentation for each step will be maintained in this GitHub repository.
-
-
-
-
+6. Rollback Plan
+Maintain a backup of the website files and database (if applicable) on Hostinger during the migration period.
+Document each migration phase in detail to facilitate a rollback if necessary.
+Utilize Route 53 to quickly switch back to Hostinger's DNS if critical issues arise on AWS.
+7. Success Criteria
+Seamless access to AtrMotors.com website through CloudFront with HTTPS enabled.
+Verified DNS resolution via Route 53 alias record pointing to the CloudFront distribution.
+Enhanced website loading speed and reduced latency for global users.
+Error-free functionality across all website
