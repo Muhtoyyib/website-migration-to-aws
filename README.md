@@ -37,7 +37,8 @@ This Statement of Work (SOW) outlines the migration process for blrighthomes.com
 
 **After Migration**:
 
-![Cloud Architecture Lucidchart](https://github.com/user-attachments/assets/6a0e1725-72ea-417d-8487-1018893e2300)
+![Cloud Architecture Page 1 (1)](https://github.com/user-attachments/assets/83aeaf40-51b6-4026-af72-8c4dbf6cc517)
+
 
 ## Cost analysis
 
