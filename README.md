@@ -30,7 +30,10 @@ This Statement of Work (SOW) outlines the migration process for blrighthomes.com
 
 ## AWS Diagram
 
-**Before Migration**: Include a simple diagram representing Hostinger's shared hosting environment (if applicable) and database storage (if applicable).
+**Before Migration**: 
+
+![Cloud Architecture Page 1](https://github.com/user-attachments/assets/6ccd800b-dd77-44fa-8c35-0fe374792a51)
+
 
 **After Migration**:
 
