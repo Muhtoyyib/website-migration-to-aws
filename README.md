@@ -21,8 +21,10 @@ Revision Date: 2024-11-27
 * [Cost Analysis](#Cost-analysis)
 * [Potential Challenges and Mitigations](#Potential-Challenges-and-Mitigations)
 * [Success Criteria](#Success-Criteria)
+* [Communication Plan)(#Communication-Plan)
+* [APPENDIX](#APPENDIX)
 
-  <hr />
+<hr />
 
 ## Introduction
 
@@ -44,10 +46,9 @@ This documentation outlines the migration process for blrighthomes.com from its 
 - Comprehensive documentation outlining the migration process and configuration details.
 - Monitoring and logging established with AWS CloudWatch for website health and performance tracking.
 
-
+<hr />
 
 ## Architecture
-
 
 ### **Before Migration**: 
 
@@ -64,6 +65,8 @@ Route 53: DNS management and domain registration.
 CloudFront: Content Delivery Network (CDN) for reduced latency.
 S3: Storage for static website hosting
 CloudWatch: Monitoring for performance metrics, logs, and alerts.
+
+<hr />
 
 ## AWS Services Utilized
 
@@ -151,35 +154,71 @@ The migration process might encounter some challenges, but we have mitigation st
 - **Escalation Procedures:** Define clear escalation procedures for critical issues or delays.
 - **Post-Migration Review:** Conduct a post-migration review to assess the overall success of the project and identify any lessons learned.
 
-## APPENDIX: Technical Processs
+<hr />
 
+## APPENDIX
+
+### Technical Process
+
+**1. Setup S3 Bucket and Static Website Hosting***
+
+- Log in to the AWS Management Console.  
+- Create an S3 bucket with the same name as your domain.  
+- Enable static website hosting and configure index and error documents (e.g., index.html, 404.html)
+
+Upload your website files to the bucket. Use the console or CLI for bulk uploads.  
+- Configure bucket policy to restrict public access but allow CloudFront access​.
+
+[AWS Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started-cloudfront-overview.html) [AWS Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html)
+
+
+**2. Configure Cloudfront Distribution***
+
+- Open the CloudFront console and create a new distribution.  
+- Set the S3 bucket as the origin and create an Origin Access Identity (OAI).  
+- Configure Viewer Protocol Policy to redirect HTTP to HTTPS​ [AWS Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started-cloudfront-overview.html). Enable caching and set default cache behavior settings.  
+- Choose "Custom SSL Certificate" to use HTTPS (CloudFront automatically provides SSL if ACM certificate is linked).
+
+
+**3. Setup Route53 for Domain Mapping**
+
+- Open Route 53 and create a hosted zone for your domain.  
+- Add alias records pointing to the CloudFront distribution (not the S3 bucket).  
+- Test DNS resolution using dig or nslookup​
+
+[AWS Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started-cloudfront-overview.html) [AWS Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html)
+
+  
+
+**4. Enable Monitoring and Logging**
+
+- Enable CloudFront and S3 logging by creating a logging bucket.  
+- Configure CloudWatch for monitoring key metrics like latency and errors.  
+- Optionally, configure alerts for specific thresholds​
+
+[AWS Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html)
+
+  
+
+**5 Test and Optimize Deployment**
+
+- Test the website by accessing the CloudFront domain and verify caching and HTTPS.  
+- Optimize caching by setting longer TTLs for static content.  
+- Validate bucket versioning and backups​
+
+[AWS Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started-cloudfront-overview.html)
 
 
 ### Architecture Description
 
 The architecture includes the following:
-
-| SN | Task | Steps      |
-|:--------:| -------------:| -------------:|
-| 1.  | Setup S3 Bucket and Static Website Hosting| - Log in to the AWS Management Console. 
-- Create an S3 bucket with the same name as your domain.
-- Enable static website hosting and configure index and error documents (e.g., index.html, 404.html)Upload your website files to the bucket. Use the console or CLI for bulk uploads.
--  Configure bucket policy to restrict public access but allow CloudFront access​.|
-| 2. |Configure Cloudfront Distribution |
-- Open the CloudFront console and create a new distribution.
-- Set the S3 bucket as the origin and create an Origin Access Identity (OAI).
-- Configure Viewer Protocol Policy to redirect HTTP to HTTPS​
-- Choose "Custom SSL Certificate" to use HTTPS (CloudFront automatically provides SSL if ACM |
-| 3. | | |
-|4. | ||
-|5. | | |
-
-
+  
 1. **S3 Bucket** Stores static website content.
 2. **CloudFront:** Serves content globally, provides HTTPS, and handles caching.
 3. **Route 53:** Manages DNS and maps your domain to the CloudFront distribution.
 4. **AWS CloudWatch:** Monitors performance and provides logs.
 5 **Versioning and Access Control:** Ensures content integrity and restricts public access directly to the S3 bucket.
+   
    
 #### Key Notes and Best Practices
 
