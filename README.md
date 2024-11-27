@@ -118,6 +118,14 @@ The migration process will be executed in distinct phases:
 
 ## Cost analysis
 
+Below is the cost analysis generated using the **aAWS Pricing Calculator**
+
+![Screenshot (332)](https://github.com/user-attachments/assets/d1ab0fd2-6a37-4377-8363-af7c4c5949d0)
+
+
+![Screenshot (333)](https://github.com/user-attachments/assets/d8ba7728-05ed-4342-84b0-582361d68619) 
+
+
 
 
 
@@ -175,7 +183,7 @@ Upload your website files to the bucket. Use the console or CLI for bulk uploads
 **2. Configure Cloudfront Distribution***
 
 - Open the CloudFront console and create a new distribution.  
-- Set the S3 bucket as the origin and create an Origin Access Identity (OAI).  
+- Set the S3 bucket as the origin and create an Origin Access Control (OAC).  
 - Configure Viewer Protocol Policy to redirect HTTP to HTTPS​ [AWS Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started-cloudfront-overview.html). Enable caching and set default cache behavior settings.  
 - Choose "Custom SSL Certificate" to use HTTPS (CloudFront automatically provides SSL if ACM certificate is linked).
 
