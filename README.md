@@ -12,7 +12,7 @@ Revision Date: 2024-11-27
 
 ## Table of Contents
 
-* [Introduction](##Architecture)
+* [Introduction](#Architecture)
 * Project Objectives
 * Deliverables
 * AWS Services Utilized
@@ -41,6 +41,7 @@ This Statement of Work (SOW) outlines the migration process for blrighthomes.com
 - Monitoring and logging established with AWS CloudWatch for website health and performance tracking.
 
 
+<a name="headers"/>
 ## Architecture
 
 **Before Migration**: 
