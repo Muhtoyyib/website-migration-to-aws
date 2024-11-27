@@ -12,17 +12,19 @@ Revision Date: 2024-11-27
 
 ## Table of Contents
 
-* [Headers](#Architecture) 
-* Project Objectives
+* [Introduction](#Introduction) 
+* [Project Objectives](#ProjectObjectives)
 * Deliverables
 * AWS Services Utilized
 * Migration Phases
 * Potential Challenges and Mitigations
 * Cost Analysis
 
+  <hr />
+
 ## Introduction
 
-This Statement of Work (SOW) outlines the migration process for blrighthomes.com from its current hosting provider, Hostinger, to Amazon Web Services (AWS). The objective is to leverage AWS's robust infrastructure for improved scalability, security, and website performance.
+This documentation outlines the migration process for blrighthomes.com from its current hosting provider, Hostinger, to Amazon Web Services (AWS). The objective is to leverage AWS's robust infrastructure for improved scalability, security, and website performance.
 
 ## Project Objectives
 
