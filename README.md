@@ -1,12 +1,24 @@
-# Statement of Work (SOW)
+# Technical Documentation : Migration of Blrighthomes.com to AWS
+<hr />
 
 Project Title: Migrating blrighthomes.com to AWS
 
 Client: Blrighthomes
 
-Vendor:
+Revision Date: 2024-11-27
 
-Revision Date: 2024-11-26
+<hr />
+
+
+## Table of Contents
+
+* Introduction
+* Project Objectives
+* Deliverables
+* AWS Services Utilized
+* Migration Phases
+* Potential Challenges and Mitigations
+* Cost Analysis
 
 ## Introduction
 
@@ -28,20 +40,82 @@ This Statement of Work (SOW) outlines the migration process for blrighthomes.com
 - Comprehensive documentation outlining the migration process and configuration details.
 - Monitoring and logging established with AWS CloudWatch for website health and performance tracking.
 
-## AWS Diagram
+
+## Architecture
 
 **Before Migration**: 
 
-![Cloud Architecture Page 1](https://github.com/user-attachments/assets/6ccd800b-dd77-44fa-8c35-0fe374792a51)
+![Cloud Architecture Page 1](https://github.com/user-attachments/assets/9ecf4d9c-9568-4cca-8ddd-57b3405669d3)
+
 
 
 **After Migration**:
 
-![Cloud Architecture Page 1 (1)](https://github.com/user-attachments/assets/83aeaf40-51b6-4026-af72-8c4dbf6cc517)
+![Cloud Architecture Page 1 (1)](https://github.com/user-attachments/assets/4b2b2592-e6db-4a68-adb4-85d587103d1f)
+
+
+## AWS Services Utilized
+
+The migration will leverage the following AWS services to achieve the project objectives:
+
+1. **Amazon S3 (Simple Storage Service):** A scalable object storage service for hosting static website content (HTML, CSS, JavaScript, images) with high availability and durability.
+2. **Amazon CloudFront:** A global content delivery network (CDN) that caches website content at geographically distributed edge locations, reducing latency and improving website loading speed for users worldwide.
+3. **Amazon Route 53:** A highly available and scalable Domain Name System (DNS) service for managing domain name registration, routing traffic to the migrated website on AWS S3 via CloudFront.
+4. **Amazon CloudWatch:** A monitoring service for collecting and visualizing real-time metrics on website performance, resource utilization, and application health on AWS.
+
+## Migration Phases
+
+The migration process will be executed in distinct phases:
+
+**Phase 1: Planning and Preparation**
+
+* **Activities:** Gather website requirements, define migration strategy, configure AWS account and security credentials.
+* **Deliverables:** Detailed migration plan, documented security procedures.
+
+**Phase 2: Website Migration**
+
+* **Activities:** Migrate website files (HTML, CSS, JavaScript, images) to an S3 bucket with appropriate access controls.
+* **Deliverables:** Website content successfully uploaded to S3 bucket.
+
+**Phase 3: CloudFront Distribution Setup**
+
+* **Activities:** Create a CloudFront distribution pointing to the S3 bucket origin, configure caching behavior and security settings (HTTPS).
+* **Deliverables:** Operational CloudFront distribution serving website content from the S3 bucket.
+
+**Phase 4: Domain Name Transfer and Routing**
+
+* **Activities:** Transfer domain name (blrighthomes.com) to AWS Route 53 and configure an alias record pointing to the CloudFront distribution.
+* **Deliverables:** Domain name successfully transferred and DNS records updated for website routing through CloudFront.
+
+**Phase 5: Testing and Validation**
+
+* **Activities:** Perform comprehensive testing of website functionality, performance, and security on the migrated platform.
+* **Deliverables:** Verified website operation and successful migration to AWS.
+
+**Phase 6: Monitoring and Optimization**
+
+* **Activities:** Implement CloudWatch for website monitoring, analyze performance metrics, and identify potential optimizations.
+* **Deliverables:** Established website monitoring with CloudWatch for ongoing health and performance tracking.
 
 
 ## Cost analysis
 
+
+
+## Potential Challenges and Mitigations
+
+The migration process might encounter some challenges, but we have mitigation strategies in place:
+
+**Challenge:** Difficulty acquiring website files using migration tools.
+**Mitigation:** Collaborate with the client to obtain the complete website file set directly.
+
+**Challenge:** Unexpected website functionality issues after migration.
+**Mitigation:** Implement rollback procedures to revert to the previous hosting provider if critical issues arise. Perform thorough testing throughout the migration process to minimize this risk.
+
+**Challenge:** Security misconfigurations during AWS setup.
+**Mitigation:** Follow AWS security best practices and conduct rigorous security testing before launching the migrated website.
+
+This document provides a comprehensive overview of the Blrighthomes.com migration to AWS. By following this plan and addressing potential challenges effectively, we can ensure a seamless transition and achieve the desired website performance and security on the AWS platform.
 
 
 ## Success Criteria
@@ -51,18 +125,6 @@ This Statement of Work (SOW) outlines the migration process for blrighthomes.com
 - Measurable improvement in website loading speed and reduced latency for global users.
 - Error-free functionality across all website pages and features.
 
-## Timelines and Key Milestones
-
-A detailed timeline with estimated durations for each migration phase will be provided upon project initiation. Key milestones will include:
-
-- Domain transfer initiation to AWS Route 53.
-- Completion of S3 bucket configuration and file migration.
-- CloudFront distribution setup and testing.
-- Route 53 DNS configuration and testing.
-- Successful website switchover to AWS with monitoring established.
-- Any Challenges Encountered and How They Were Resolved
-  
-A dedicated log will be maintained to document any challenges encountered during the migration process. This log will detail the specific issue, the implemented solution, and the outcome.
 
 
 
