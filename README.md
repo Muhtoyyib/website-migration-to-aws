@@ -12,7 +12,7 @@ Revision Date: 2024-11-27
 
 ## Table of Contents
 
-* Introduction
+* [Introduction](## Architecture)
 * Project Objectives
 * Deliverables
 * AWS Services Utilized
