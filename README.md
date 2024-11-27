@@ -13,7 +13,7 @@ Revision Date: 2024-11-27
 ## Table of Contents
 
 * [Introduction](#Introduction) 
-* [Project Objectives](#ProjectObjectives)
+* [Project Objectives](#Objectives)
 * Deliverables
 * AWS Services Utilized
 * Migration Phases
@@ -26,7 +26,7 @@ Revision Date: 2024-11-27
 
 This documentation outlines the migration process for blrighthomes.com from its current hosting provider, Hostinger, to Amazon Web Services (AWS). The objective is to leverage AWS's robust infrastructure for improved scalability, security, and website performance.
 
-## Project Objectives
+## Objectives
 
 - Migrate blrighthomes.com, a static portfolio/landing website, from Hostinger to AWS.
 - Utilize a serverless architecture for cost-effectiveness and scalability.
