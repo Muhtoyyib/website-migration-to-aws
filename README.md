@@ -14,11 +14,12 @@ Revision Date: 2024-11-27
 
 * [Introduction](#Introduction) 
 * [Project Objectives](#Objectives)
-* Deliverables
-* AWS Services Utilized
-* Migration Phases
-* Potential Challenges and Mitigations
-* Cost Analysis
+* [Deliverables](#Deliverables)
+* [Architecture](#Architecture)
+* [AWS Services Utilized](#AWS-Services-Utilized)
+* [Migration Phases](#Migration-Phases)
+* [Potential Challenges and Mitigations]
+* [Cost Analysis](#Cost-analysis)
 
   <hr />
 
@@ -47,16 +48,21 @@ This documentation outlines the migration process for blrighthomes.com from its 
 ## Architecture
 
 
-**Before Migration**: 
+### **Before Migration**: 
 
 ![Cloud Architecture Page 1](https://github.com/user-attachments/assets/9ecf4d9c-9568-4cca-8ddd-57b3405669d3)
 
 
-
-**After Migration**:
+### **After Migration**:
 
 ![Cloud Architecture Page 1 (1)](https://github.com/user-attachments/assets/4b2b2592-e6db-4a68-adb4-85d587103d1f)
 
+**Components**
+
+Route 53: DNS management and domain registration.
+CloudFront: Content Delivery Network (CDN) for reduced latency.
+S3: Storage for static website hosting
+CloudWatch: Monitoring for performance metrics, logs, and alerts.
 
 ## AWS Services Utilized
 
@@ -67,39 +73,43 @@ The migration will leverage the following AWS services to achieve the project ob
 3. **Amazon Route 53:** A highly available and scalable Domain Name System (DNS) service for managing domain name registration, routing traffic to the migrated website on AWS S3 via CloudFront.
 4. **Amazon CloudWatch:** A monitoring service for collecting and visualizing real-time metrics on website performance, resource utilization, and application health on AWS.
 
+<hr />
+
 ## Migration Phases
 
 The migration process will be executed in distinct phases:
 
-**Phase 1: Planning and Preparation**
+**Phase 1**: Planning and Preparation (Day 1)**
 
-* **Activities:** Gather website requirements, define migration strategy, configure AWS account and security credentials.
-* **Deliverables:** Detailed migration plan, documented security procedures.
+- Activities: Gather website requirements, define migration strategy, configure AWS account and security credentials.
+- Deliverables: Detailed migration plan, documented security procedures.
 
-**Phase 2: Website Migration**
+**Phase 2: Website Migration (Day 2)**
 
-* **Activities:** Migrate website files (HTML, CSS, JavaScript, images) to an S3 bucket with appropriate access controls.
-* **Deliverables:** Website content successfully uploaded to S3 bucket.
+- Activities: Migrate website files (HTML, CSS, JavaScript, images) to an S3 bucket with appropriate access controls.
+- Deliverables: Website content successfully uploaded to S3 bucket.
 
-**Phase 3: CloudFront Distribution Setup**
+**Phase 3: CloudFront Distribution Setup (Day 3)**
 
-* **Activities:** Create a CloudFront distribution pointing to the S3 bucket origin, configure caching behavior and security settings (HTTPS).
-* **Deliverables:** Operational CloudFront distribution serving website content from the S3 bucket.
+- Activities: Create a CloudFront distribution pointing to the S3 bucket origin, configure caching behavior and security settings (HTTPS).
+- Deliverables: Operational CloudFront distribution serving website content from the S3 bucket.
 
-**Phase 4: Domain Name Transfer and Routing**
+**Phase 4: Domain Name Transfer and Routing (Day 4-5)**
 
-* **Activities:** Transfer domain name (blrighthomes.com) to AWS Route 53 and configure an alias record pointing to the CloudFront distribution.
-* **Deliverables:** Domain name successfully transferred and DNS records updated for website routing through CloudFront.
+- Activities: Transfer domain name (blrighthomes.com) to AWS Route 53 and configure an alias record pointing to the CloudFront distribution.
+- Deliverables: Domain name successfully transferred and DNS records updated for website routing through CloudFront.
 
-**Phase 5: Testing and Validation**
+**Phase 5: Testing and Validation (Day 5)**
 
-* **Activities:** Perform comprehensive testing of website functionality, performance, and security on the migrated platform.
-* **Deliverables:** Verified website operation and successful migration to AWS.
+- Activities: Perform comprehensive testing of website functionality, performance, and security on the migrated platform.
+- Deliverables: Verified website operation and successful migration to AWS.
 
-**Phase 6: Monitoring and Optimization**
+**Phase 6: Monitoring and Optimization (Day 6)**
 
-* **Activities:** Implement CloudWatch for website monitoring, analyze performance metrics, and identify potential optimizations.
-* **Deliverables:** Established website monitoring with CloudWatch for ongoing health and performance tracking.
+- Activities: Implement CloudWatch for website monitoring, analyze performance metrics, and identify potential optimizations.
+- Deliverables: Established website monitoring with CloudWatch for ongoing health and performance tracking.
+
+<hr />
 
 
 ## Cost analysis
@@ -110,16 +120,17 @@ The migration process will be executed in distinct phases:
 
 The migration process might encounter some challenges, but we have mitigation strategies in place:
 
+1. 
 **Challenge:** Difficulty acquiring website files using migration tools.
 **Mitigation:** Collaborate with the client to obtain the complete website file set directly.
 
+2. 
 **Challenge:** Unexpected website functionality issues after migration.
 **Mitigation:** Implement rollback procedures to revert to the previous hosting provider if critical issues arise. Perform thorough testing throughout the migration process to minimize this risk.
 
+3.
 **Challenge:** Security misconfigurations during AWS setup.
 **Mitigation:** Follow AWS security best practices and conduct rigorous security testing before launching the migrated website.
-
-This document provides a comprehensive overview of the Blrighthomes.com migration to AWS. By following this plan and addressing potential challenges effectively, we can ensure a seamless transition and achieve the desired website performance and security on the AWS platform.
 
 
 ## Success Criteria
@@ -128,6 +139,57 @@ This document provides a comprehensive overview of the Blrighthomes.com migratio
 - Verified DNS resolution via Route 53 alias record pointing to the CloudFront distribution.
 - Measurable improvement in website loading speed and reduced latency for global users.
 - Error-free functionality across all website pages and features.
+
+## Communication Plan
+
+
+- **Kick-off Meeting:** An initial meeting to establish project goals, timelines, and communication channels.
+- **Regular Status Updates:** Weekly status updates via email or project management tools to keep the client informed about project progress.
+- **Issue Tracking:** Use a project management tool to track and prioritize issues and tasks.
+- **Escalation Procedures:** Define clear escalation procedures for critical issues or delays.
+- **Post-Migration Review:** Conduct a post-migration review to assess the overall success of the project and identify any lessons learned.
+
+## APPENDIX: Technical Processs
+
+
+
+### Architecture Description
+
+The architecture includes the following:
+
+| SN | Task | Steps      |
+|:--------:| -------------:| -------------:|
+| 1.  | Setup S3 Bucket and Static Website Hosting| 
+- Log in to the AWS Management Console. 
+- Create an S3 bucket with the same name as your domain.  
+- Enable static website hosting and configure index and error documents (e.g., index.html, 404.html)Upload your website files to the bucket. Use the console or CLI for bulk uploads.
+- Configure bucket policy to restrict public access but allow CloudFront access​.
+ |
+| 2. |Configure Cloudfront Distribution |
+- Open the CloudFront console and create a new distribution.
+- Set the S3 bucket as the origin and create an Origin Access Identity (OAI).
+- Configure Viewer Protocol Policy to redirect HTTP to HTTPS​
+- Choose "Custom SSL Certificate" to use HTTPS (CloudFront automatically provides SSL if ACM |
+| 3. | | |
+|4. | ||
+|5. | | |
+
+
+1. **S3 Bucket** Stores static website content.
+2. **CloudFront:** Serves content globally, provides HTTPS, and handles caching.
+3. **Route 53:** Manages DNS and maps your domain to the CloudFront distribution.
+4. **AWS CloudWatch:** Monitors performance and provides logs.
+5 **Versioning and Access Control:** Ensures content integrity and restricts public access directly to the S3 bucket.
+   
+#### Key Notes and Best Practices
+
+- **Domain as Bucket Name:** Use your exact domain name as the S3 bucket name for seamless integration.
+- **Access Control:** Restrict public access to the S3 bucket by using Origin Access Identity (OAI) for CloudFront.
+- **Bucket Versioning:** Enable versioning on the S3 bucket to manage content updates.
+- **Caching:** Leverage CloudFront caching to reduce latency and transfer costs.
+- **HTTPS and Security:** Use CloudFront's SSL capabilities for secure content delivery.
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html
 
 
 
