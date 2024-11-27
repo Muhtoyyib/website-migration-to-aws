@@ -18,8 +18,9 @@ Revision Date: 2024-11-27
 * [Architecture](#Architecture)
 * [AWS Services Utilized](#AWS-Services-Utilized)
 * [Migration Phases](#Migration-Phases)
-* [Potential Challenges and Mitigations](#Potential-Challenges-and-Mitigations)
 * [Cost Analysis](#Cost-analysis)
+* [Potential Challenges and Mitigations](#Potential-Challenges-and-Mitigations)
+* [Success Criteria](#Success-Criteria)
 
   <hr />
 
@@ -116,19 +117,19 @@ The migration process will be executed in distinct phases:
 
 
 
+
 ## Potential Challenges and Mitigations
 
 The migration process might encounter some challenges, but we have mitigation strategies in place:
 
-1. 
+ 
 **Challenge:** Difficulty acquiring website files using migration tools.
 **Mitigation:** Collaborate with the client to obtain the complete website file set directly.
 
-2. 
+ 
 **Challenge:** Unexpected website functionality issues after migration.
 **Mitigation:** Implement rollback procedures to revert to the previous hosting provider if critical issues arise. Perform thorough testing throughout the migration process to minimize this risk.
 
-3.
 **Challenge:** Security misconfigurations during AWS setup.
 **Mitigation:** Follow AWS security best practices and conduct rigorous security testing before launching the migrated website.
 
@@ -139,6 +140,7 @@ The migration process might encounter some challenges, but we have mitigation st
 - Verified DNS resolution via Route 53 alias record pointing to the CloudFront distribution.
 - Measurable improvement in website loading speed and reduced latency for global users.
 - Error-free functionality across all website pages and features.
+  
 
 ## Communication Plan
 
@@ -159,7 +161,10 @@ The architecture includes the following:
 
 | SN | Task | Steps      |
 |:--------:| -------------:| -------------:|
-| 1.  | Setup S3 Bucket and Static Website Hosting| - Log in to the AWS Management Console. - Create an S3 bucket with the same name as your domain.  - Enable static website hosting and configure index and error documents (e.g., index.html, 404.html)Upload your website files to the bucket. Use the console or CLI for bulk uploads.- Configure bucket policy to restrict public access but allow CloudFront access​.|
+| 1.  | Setup S3 Bucket and Static Website Hosting| - Log in to the AWS Management Console. 
+- Create an S3 bucket with the same name as your domain.
+- Enable static website hosting and configure index and error documents (e.g., index.html, 404.html)Upload your website files to the bucket. Use the console or CLI for bulk uploads.
+-  Configure bucket policy to restrict public access but allow CloudFront access​.|
 | 2. |Configure Cloudfront Distribution |
 - Open the CloudFront console and create a new distribution.
 - Set the S3 bucket as the origin and create an Origin Access Identity (OAI).
