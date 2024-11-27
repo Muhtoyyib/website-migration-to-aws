@@ -83,7 +83,7 @@ The migration will leverage the following AWS services to achieve the project ob
 
 The migration process will be executed in distinct phases:
 
-**Phase 1**: Planning and Preparation (Day 1)**
+**Phase 1: Planning and Preparation (Day 1)**
 
 - Activities: Gather website requirements, define migration strategy, configure AWS account and security credentials.
 - Deliverables: Detailed migration plan, documented security procedures.
