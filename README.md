@@ -118,13 +118,13 @@ The migration process will be executed in distinct phases:
 
 ## Cost analysis
 
-Below is the cost analysis generated using the **aAWS Pricing Calculator**
-
-![Screenshot (332)](https://github.com/user-attachments/assets/d1ab0fd2-6a37-4377-8363-af7c4c5949d0)
+Below is the cost analysis generated using the **aAWS Pricing Calculator** 
 
 
-![Screenshot (333)](https://github.com/user-attachments/assets/d8ba7728-05ed-4342-84b0-582361d68619) 
+![monthly estimate](https://github.com/user-attachments/assets/7a6a4980-8510-4651-8517-1a64a8eeccfa)
 
+
+![Yearly estimate](https://github.com/user-attachments/assets/f9d960b1-5882-4a4c-8f03-5471ebd0b59f)
 
 
 
