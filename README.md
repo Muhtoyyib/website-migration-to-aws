@@ -83,32 +83,32 @@ The migration will leverage the following AWS services to achieve the project ob
 
 The migration process will be executed in distinct phases:
 
-**Phase 1: Planning and Preparation (Day 1)**
+### **Phase 1: Planning and Preparation (Day 1)**
 
 - Activities: Gather website requirements, define migration strategy, configure AWS account and security credentials.
 - Deliverables: Detailed migration plan, documented security procedures.
 
-**Phase 2: Website Migration (Day 2)**
+### **Phase 2: Website Migration (Day 2)**
 
 - Activities: Migrate website files (HTML, CSS, JavaScript, images) to an S3 bucket with appropriate access controls.
 - Deliverables: Website content successfully uploaded to S3 bucket.
 
-**Phase 3: CloudFront Distribution Setup (Day 3)**
+### **Phase 3: CloudFront Distribution Setup (Day 3)**
 
 - Activities: Create a CloudFront distribution pointing to the S3 bucket origin, configure caching behavior and security settings (HTTPS).
 - Deliverables: Operational CloudFront distribution serving website content from the S3 bucket.
 
-**Phase 4: Domain Name Transfer and Routing (Day 4-5)**
+### **Phase 4: Domain Name Transfer and Routing (Day 4-5)**
 
 - Activities: Transfer domain name (blrighthomes.com) to AWS Route 53 and configure an alias record pointing to the CloudFront distribution.
 - Deliverables: Domain name successfully transferred and DNS records updated for website routing through CloudFront.
 
-**Phase 5: Testing and Validation (Day 5)**
+### **Phase 5: Testing and Validation (Day 5)**
 
 - Activities: Perform comprehensive testing of website functionality, performance, and security on the migrated platform.
 - Deliverables: Verified website operation and successful migration to AWS.
 
-**Phase 6: Monitoring and Optimization (Day 6)**
+### **Phase 6: Monitoring and Optimization (Day 6)**
 
 - Activities: Implement CloudWatch for website monitoring, analyze performance metrics, and identify potential optimizations.
 - Deliverables: Established website monitoring with CloudWatch for ongoing health and performance tracking.
